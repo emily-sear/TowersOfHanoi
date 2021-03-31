@@ -35,20 +35,30 @@ Disk* Tower::peek()
 void Tower::push(Disk* d)
 {
     //add an element to the top of the stack
+    if(this->top->getSize() > d->getSize())
+    {
         d->setNextDisk(this->top);
         this->top = d;
         count++;
+    }
 }
 
 void Tower::display()
 {
     //cout on each disks toString for the entire tower 
-
-    Disk* nextDisk = this->top;
-
-    for(int i = 0; i < this->count; i++)
+    if(this->top == NULL)
     {
-        cout << nextDisk->toString() << endl;
-        nextDisk = nextDisk->getNextDisk();
+        cout << "No Disks on Tower" << endl;
     }
+    else
+    {
+        Disk* nextDisk = this->top;
+
+        for(int i = 0; i < this->count; i++)
+        {
+            cout << nextDisk->toString() << endl;
+            nextDisk = nextDisk->getNextDisk();
+        }
+    }
+
 }
